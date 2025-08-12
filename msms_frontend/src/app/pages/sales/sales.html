@@ -1,0 +1,63 @@
+<div class="sales-container">
+  <h2>Sales</h2>
+  <button (click)="openModal()">+ Add Sale</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Item ID</th>
+        <th>Quantity</th>
+        <th>Sale Price</th>
+        <th>Profit</th>
+        <th>Payment Method</th>
+        <th>Date</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let sale of sales">
+        <td>{{ sale.item_id }}</td>
+        <td>{{ sale.quantity }}</td>
+        <td>{{ sale.sale_price }}</td>
+        <td>{{ sale.profit }}</td>
+        <td>{{ sale.payment_method }}</td>
+        <td>{{ sale.sale_date }}</td>
+        <td>
+          <button>Edit</button>
+          <button (click)="deleteSale(sale.sale_id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Modal -->
+  <div class="modal" *ngIf="showModal">
+    <div class="modal-content">
+      <h3>Add Sale</h3>
+      <label>Item ID:</label>
+      <input type="number" [(ngModel)]="newSale.item_id">
+
+      <label>Quantity:</label>
+      <input type="number" [(ngModel)]="newSale.quantity">
+
+      <label>Sale Price:</label>
+      <input type="number" [(ngModel)]="newSale.sale_price">
+
+      <label>Profit:</label>
+      <input type="number" [(ngModel)]="newSale.profit">
+
+      <label>Payment Method:</label>
+      <select [(ngModel)]="newSale.payment_method">
+        <option>Cash</option>
+        <option>Card</option>
+        <option>Online</option>
+      </select>
+
+      <label>Date:</label>
+      <input type="date" [(ngModel)]="newSale.sale_date">
+
+      <button (click)="saveSale()">Save</button>
+      <button (click)="closeModal()">Cancel</button>
+    </div>
+  </div>
+</div>
